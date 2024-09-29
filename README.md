@@ -12,3 +12,34 @@ Javascript code is obfuscated due to security reasons at runtime, but here's the
 The token is generated using two hashing algorithms, SHA512 and SHAKE256. The user's input is first hashed with SHAKE256 over 500 iterations, producing an output of 10,000,000 bits (1.25 MB). The result from the final (500th) iteration is then hashed using the SHA512 algorithm to create the token.
 
 For the master password, the same process is followed, but with only 25 iterations of SHAKE256. The resulting hash of the master password is then XORed with the token to produce an encrypted token, which is subsequently stored in the browser's local storage.
+
+---
+
+**Generating Token**
+```javascript
+// Get User Information
+const first_name = 'token'
+const last_name = 'v1'
+const secret = 'secret?'
+const iterations = 500 // 25 iterations for master password
+
+// Make Single String
+var data = first_name + last_name + secret // tokenv1secret?
+
+// 500 Iterations of shake256
+for(let i = 0; i < 500; i++){
+  data = shake256(data, 1000000)
+}
+token = Sha512.hash(data)
+```
+
+**Encrypt Token with master password**
+```javascript
+function xor_hashes(hash1, hash2){
+  var result = ''
+  for (let i = 0; i < hash1.length; i++) {
+    result += (parseInt(`0x${hash1[i]}`, 16) ^ parseInt(`0x${hash2[i]}`, 16)).toString(16)
+  }
+  return result
+}
+```
