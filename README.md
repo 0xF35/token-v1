@@ -6,3 +6,9 @@
 - **Secret Information**: *The "Secret" can be any unique, permanent information that you can easily recall, such as a Social Security Number or any other identifier that is personal and memorable to you.*
 - **No Recovery Option**: *Token has no recovery mechanism for forgotten tokens or information. You bear full responsibility for remembering all inputs provided during token generation.*
 
+## An Open Source Project
+Javascript code is obfuscated due to security reasons at runtime, but here's the brief information on working.
+
+The token is generated using two hashing algorithms, SHA512 and SHAKE256. The user's input is first hashed with SHAKE256 over 500 iterations, producing an output of 10,000,000 bits (1.25 MB). The result from the final (500th) iteration is then hashed using the SHA512 algorithm to create the token.
+
+For the master password, the same process is followed, but with only 25 iterations of SHAKE256. The resulting hash of the master password is then XORed with the token to produce an encrypted token, which is subsequently stored in the browser's local storage.
