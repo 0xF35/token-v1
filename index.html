@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="og:title" content="Token v1 - Securely Generate Strong Passwords for Everything"/>
-    <meta name="description" content="Secure Client-side password generation tool. Create strong, unique passwords using a cryptographic token based on your inputs."/>
-    <meta name="keywords" content="token, password generation, secure passwords, cryptographic, client-side, strong passwords, unique passwords, browser storage, encryption tool">
-    <meta name="twitter:description" content="Generate strong passwords securely on your browser with Token v1. Encrypted and stored locally"/>
-    <meta name="twitter:title" content="Token v1 - Secure Password Generation Using Cryptographic Tokens"/>
+    <meta name="og:title" content="Token v1 - Securely Generate Strong Passwords for Everything" />
+    <meta name="description"
+        content="Secure Client-side password generation tool. Create strong, unique passwords using a cryptographic token based on your inputs." />
+    <meta name="keywords"
+        content="token, password generation, secure passwords, cryptographic, client-side, strong passwords, unique passwords, browser storage, encryption tool">
+    <meta name="twitter:description"
+        content="Generate strong passwords securely on your browser with Token v1. Encrypted and stored locally" />
+    <meta name="twitter:title" content="Token v1 - Secure Password Generation Using Cryptographic Tokens" />
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Token v1 - Securely Generate Strong Passwords for Everything">
     <meta property="og:url" content="https://token-v1.vercel.app/">
@@ -17,88 +21,192 @@
     <meta name="twitter:image" content="https://token-v1.vercel.app/banner.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <title>Token v1</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="/token.svg" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="sha3.min.js"></script>
-    <script src="sha512.js"></script>
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="shortcut icon" href="static/icon.svg" type="image/x-icon">
+    <script src="scripts/tailwind.js"></script>
+    <script src="scripts/sha3.min.js"></script>
+    <script src="scripts/sha512.js"></script>
+    <script src="/scripts/script.js"></script>
 </head>
-<body class="bg-[#0B0014] hide-scroll selection:bg-[#e57cfe] selection:text-[#0B0014]">
-    <div id="token-creation" class="hidden flex-col justify-center items-center min-h-screen  duration-300">
-        <div class="flex items-center justify-center flex-col gap-6 w-full flex-wrap my-20">
-            <span class="text-[#F5E9E2] syne text-2xl lg:text-3xl text-center font-bold">Create Unique Token</span>
-            <div class="flex w-5/6 md:w-4/6 lg:w-3/6 flex-col gap-2 mt-8">
-                <span class="mont text-[#F5E9E2] font-medium">First Name</span>
-                <input oninput="set_to_lower(event)" class="bg-[#282F3E] py-3 text-[#F5E9E2] focus:outline-0 px-6 rounded mont" type="text" id="fname">
+
+<body class="bg-[#111827] hide-scroll">
+    <!-- Logo Header -->
+    <div class="bg-[#111827] flex h-16 justify-center items-center w-screen absolute top-0">
+        <svg class="h-4 hidden md:flex xl:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 275.4 35.5">
+            <defs>
+                <style>
+                    .a {
+                        fill: #a78bfa;
+                    }
+                </style>
+            </defs>
+            <path class="a" d="M0,.5V12.3H25V35H40.6V12.3h25V.5Z" />
+            <path class="a"
+                d="M136.8,11a17,17,0,0,0-3.7-5.7,19.6,19.6,0,0,0-5.5-3.9A17.1,17.1,0,0,0,120.9,0H84.8a17.1,17.1,0,0,0-6.7,1.4,19.6,19.6,0,0,0-5.5,3.9A18.7,18.7,0,0,0,68.9,11a17.2,17.2,0,0,0-1.3,6.8,17,17,0,0,0,1.3,6.7,18.7,18.7,0,0,0,3.7,5.7,16.3,16.3,0,0,0,5.5,3.9,15.5,15.5,0,0,0,6.7,1.4h36.1a15.5,15.5,0,0,0,6.7-1.4,16.3,16.3,0,0,0,5.5-3.9,17,17,0,0,0,3.7-5.7,17,17,0,0,0,0-13.5ZM121.2,21.3a5.2,5.2,0,0,1-3.5,1.4H88.1a5.2,5.2,0,0,1-3.6-1.4,5,5,0,0,1-1.4-3.5,4.8,4.8,0,0,1,1.4-3.5,4.9,4.9,0,0,1,3.6-1.5h29.6a5,5,0,0,1,4.9,5A5,5,0,0,1,121.2,21.3Z" />
+            <path class="a" d="M206.8.5H184.2L156.7,19.4V.5H141.1V35h15.6l13.7-9.4L184.2,35h22.6L181.7,17.8Z" />
+            <polygon class="a"
+                points="275.4 0.5 275.4 35 259.8 35 225.3 15.3 225.3 35 209.7 35 209.7 0.5 225.3 0.5 259.8 20.2 259.8 0.5 275.4 0.5" />
+        </svg>
+        <svg class="h-4 md:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.6 34.5">
+            <defs>
+                <style>
+                    .a {
+                        fill: #a78bfa;
+                    }
+                </style>
+            </defs>
+            <polygon class="a"
+                points="90.6 17.3 115.6 34.5 93 34.5 79.3 25.1 65.6 34.5 50 34.5 50 11.8 40.6 11.8 40.6 34.5 25 34.5 25 11.8 0 11.8 0 0 65.6 0 65.6 18.9 93 0 115.6 0 90.6 17.3" />
+        </svg>
+        <svg class="h-4 hidden xl:flex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 343.5 35.5">
+            <defs>
+                <style>
+                    .a {
+                        fill: #a78bfa;
+                    }
+                </style>
+            </defs>
+            <path class="a" d="M25,12.3H0V.5H65.6V12.3h-25V35H25Z" />
+            <path class="a"
+                d="M120.9,0a17.1,17.1,0,0,1,6.7,1.4,19.6,19.6,0,0,1,5.5,3.9,17,17,0,0,1,3.7,5.7,17.2,17.2,0,0,1,1.4,6.8,18,18,0,0,1-1.4,6.8,17.6,17.6,0,0,1-3.7,5.6,16.3,16.3,0,0,1-5.5,3.9,15.5,15.5,0,0,1-6.7,1.4H84.8a15.5,15.5,0,0,1-6.7-1.4,16.3,16.3,0,0,1-5.5-3.9,19.5,19.5,0,0,1-3.7-5.6,17.9,17.9,0,0,1-1.3-6.8A17.2,17.2,0,0,1,68.9,11a18.7,18.7,0,0,1,3.7-5.7,19.6,19.6,0,0,1,5.5-3.9A17.1,17.1,0,0,1,84.8,0Zm-3.2,12.8H88.1a4.9,4.9,0,0,0-3.6,1.5,4.8,4.8,0,0,0-1.4,3.5,5,5,0,0,0,1.4,3.5,5.2,5.2,0,0,0,3.6,1.4h29.6a4.8,4.8,0,0,0,4.9-4.9,4.8,4.8,0,0,0-1.4-3.5A4.7,4.7,0,0,0,117.7,12.8Z" />
+            <path class="a" d="M141.1.5h15.6V19.4L184.2.5h22.6L181.7,17.8,206.8,35H184.2l-13.8-9.4L156.7,35H141.1Z" />
+            <path class="a" d="M209.7.5h64.2V9.4H225.3v3.9h48.6v8.9H225.3v4h48.6V35H209.7Z" />
+            <path class="a" d="M277.8.5h15.6l34.5,19.7V.5h15.6V35H327.9L293.4,15.3V35H277.8Z" />
+        </svg>
+    </div>
+    <!-- Create Token Page -->
+    <div class="min-h-screen w-screen duration-500 hidden" id="create">
+        <!-- <div class="h-16"></div> -->
+        <div class="min-h-screen flex flex-col items-center justify-center gap-5 py-28">
+            <span class="text-2xl text-center text-white font-semibold syne flex flex-col items-center">
+                Create Token
+                <span class="text-[#9ca3af] text-sm inter font-normal px-6 text-center">
+                    Creating Token takes about 50-60 seconds
+                </span>
+            </span>
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1 mt-6">
+                <span class="text-[#9ca3af] text-sm">First Name</span>
+                <input oninput="set_to_lower(event)"
+                    class="w-full bg-transparent border border-[#9ca3af] duration-200 focus:outline-0 focus:border-[#a78bfa] py-3 text-white px-6 rounded"
+                    type="text" id="first-name">
             </div>
-            <div class="flex w-5/6 md:w-4/6 lg:w-3/6 flex-col gap-2">
-                <span class="mont text-[#F5E9E2] font-medium">Last Name</span>
-                <input oninput="set_to_lower(event)" class="bg-[#282F3E] py-3 text-[#F5E9E2] focus:outline-0 px-6 rounded mont" type="text" id="lname">
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1">
+                <span class="text-[#9ca3af] text-sm">Last Name</span>
+                <input oninput="set_to_lower(event)"
+                    class="w-full bg-transparent border border-[#9ca3af] duration-200 focus:outline-0 focus:border-[#a78bfa] py-3 text-white px-6 rounded"
+                    type="text" id="last-name">
             </div>
-            <div class="flex w-5/6 md:w-4/6 lg:w-3/6 flex-col gap-2">
-                <span class="mont text-[#F5E9E2] font-medium">Secret</span>
-                <input oninput="set_to_lower(event)" class="bg-[#282F3E] py-3 text-[#F5E9E2] focus:outline-0 px-6 rounded mont" type="text" id="secret">
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1">
+                <span class="text-[#9ca3af] text-sm">Secret</span>
+                <input oninput="set_to_lower(event)"
+                    class="w-full bg-transparent border border-[#9ca3af] duration-200 focus:outline-0 focus:border-[#a78bfa] py-3 text-white px-6 rounded"
+                    type="text" id="secret">
+                <span class="text-[#9ca3af] text-xs px-6 text-center">Secret can be anything you can remember and
+                    other's can't guess it.</span>
             </div>
-            <div class="bg-[#282F3E] rounded-full h-2 w-5/6 md:w-4/6 lg:w-3/6">
-                <div class="bg-[#E3B5A4] rounded-full h-full w-0 duration-300" id="progress"></div>
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1">
+                <button onclick="create_token()"
+                    class="bg-[#a78bfa22] focus:bg-[#a78bfa55] duration-300 border border-[#a78bfa] syne py-4 text-white rounded text-sm font-medium focus:outline-0">Create
+                    Token</button>
             </div>
-            <div class="w-5/6 md:w-4/6 lg:w-3/6">
-                <button onclick="create_token()" class="py-3 focus:outline-0 w-full flex justify-center gap-4 items-center rounded bg-[#E3B5A4] text-[#0B0014] mont font-medium duration-300" id="create-token">Create & Save Token</button>
-                <span class="justify-center hidden" id="loading"><div class="w-10 h-10 rounded-full border-t-2 border-r-2 border-[#E3B5A4] animate-spin"></div></span>
+            <span class="syne cursor-pointer text-[#9ca3af] text-xs px-6 text-center"><a
+                    href="https://github.com/0xF35/token-v1" target="_blank">An Open-Source Project</a></span>
+        </div>
+    </div>
+    <!-- Loader Page -->
+    <div class="h-screen w-screen flex justify-center items-center duration-500" id="loader">
+        <div class="h-12 w-12 border-r-2 border-l-2 border-[#a78bfa] rounded-[50%] animate-spin"></div>
+    </div>
+    <!-- Generation Page -->
+    <div class="h-screen flex w-screen flex-col justify-center items-center hidden duration-500 gap-4" id="generation">
+        <div class="w-5/6 md:w-3/5 xl:w-2/5 bg-[#111] h-2 rounded-full">
+            <div class="w-0 bg-[#a78bfa] h-2 rounded-full" id="progress"></div>
+        </div>
+        <span class="inter text-white text-sm" id="progress-span"></span>
+    </div>
+    <!-- Protect Page -->
+    <div class="min-h-screen w-screen duration-500 hidden" id="protect">
+        <div class="min-h-screen flex flex-col items-center justify-center gap-5 py-28">
+            <span class="text-2xl text-center text-white font-semibold syne flex flex-col items-center">
+                Protect Token
+                <span class="text-[#9ca3af] text-sm inter font-normal px-6 text-center">
+                    Encrypt your Token with Master Password
+                </span>
+            </span>
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1 mt-6">
+                <span class="text-[#9ca3af] text-sm">Master Password</span>
+                <input
+                    class="w-full bg-transparent border border-[#9ca3af] duration-200 focus:outline-0 focus:border-[#a78bfa] py-3 text-white px-6 rounded"
+                    type="password" id="masterpassword">
+            </div>
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1">
+                <span class="text-[#9ca3af] text-sm">Confirm Master Password</span>
+                <input
+                    class="w-full bg-transparent border border-[#9ca3af] duration-200 focus:outline-0 focus:border-[#a78bfa] py-3 text-white px-6 rounded"
+                    type="password" id="c-masterpassword">
+            </div>
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1">
+                <button onclick="encrypt_token()"
+                    class="bg-[#a78bfa22] focus:bg-[#a78bfa55] duration-300 border font-medium border-[#a78bfa] syne py-4 text-white rounded text-sm focus:outline-0">Encrypt
+                    Token</button>
             </div>
         </div>
     </div>
-    <div class="hidden justify-center flex-col items-center min-h-screen gap-6 py-16" id="secure_div">
-        <span class="text-[#F5E9E2] syne text-2xl lg:text-3xl text-center font-bold">Securing Token</span>
-        <div class="flex w-5/6 md:w-4/6 lg:w-3/6 flex-col gap-2 mt-8">
-            <span class="mont text-[#F5E9E2] font-medium">Master Password</span>
-            <input class="bg-[#282F3E] py-3 text-[#F5E9E2] focus:outline-0 px-6 rounded" type="password" id="mp">
-        </div>
-        <div class="flex w-5/6 md:w-4/6 lg:w-3/6 flex-col gap-2">
-            <span class="mont text-[#F5E9E2] font-medium">Confirm Master Password</span>
-            <input class="bg-[#282F3E] py-3 text-[#F5E9E2] focus:outline-0 px-6 rounded" type="password" id="cmp">
-        </div>
-        <div class="bg-[#282F3E] rounded-full h-2 w-5/6 md:w-4/6 lg:w-3/6">
-            <div class="bg-[#E3B5A4] rounded-full h-full w-0 duration-300" id="progress_2"></div>
-        </div>
-        <div class="w-5/6 md:w-4/6 lg:w-3/6">
-            <button onclick="secure_token()" class="py-3 focus:outline-0 w-full flex justify-center gap-4 items-center rounded bg-[#E3B5A4] text-[#0B0014] mont font-medium duration-300" id="btn_2">Secure Token</button>
-            <span class="justify-center hidden" id="loading_2"><div class="w-10 h-10 rounded-full border-t-2 border-r-2 border-[#E3B5A4] animate-spin"></div></span>
-        </div>
-    </div>
-    <div class="w-screen h-screen flex justify-center items-center" id="loading_div">
-        <div class="w-12 h-12 rounded-full border-t-2 border-r-2 border-[#E3B5A4] animate-spin"></div>
-    </div>
-    <div class="hidden justify-center flex-col items-center min-h-screen gap-6 py-16" id="home">
-        <span class="text-[#F5E9E2] syne text-2xl lg:text-3xl text-center font-bold">Unlock Token</span>
-        <div class="flex w-5/6 md:w-4/6 lg:w-3/6 flex-col gap-2 mt-8">
-            <span class="mont text-[#F5E9E2] font-medium">Master Password</span>
-            <input class="bg-[#282F3E] py-3 text-[#F5E9E2] focus:outline-0 px-6 rounded" type="password" id="masterpass">
-        </div>
-        <div class="bg-[#282F3E] rounded-full h-2 w-5/6 md:w-4/6 lg:w-3/6">
-            <div class="bg-[#E3B5A4] rounded-full h-full w-0 duration-300" id="progress_3"></div>
-        </div>
-        <div class="w-5/6 md:w-4/6 lg:w-3/6">
-            <button onclick="unlock_token()" class="py-3 focus:outline-0 w-full flex justify-center gap-4 items-center rounded bg-[#E3B5A4] text-[#0B0014] mont font-medium duration-300" id="unlock">Unlock</button>
-            <span class="justify-center hidden" id="loading_3"><div class="w-10 h-10 rounded-full border-t-2 border-r-2 border-[#E3B5A4] animate-spin"></div></span>
-        </div>
-        <div class="w-5/6 md:w-4/6 lg:w-3/6 flex justify-center">
-            <span onclick="logout()" class="text-[#E3B5A4] syne cursor-pointer">Logout</span>
+    <!-- Unlock Page -->
+    <div class="min-h-screen w-screen duration-500 hidden" id="unlock">
+        <div class="min-h-screen flex flex-col items-center justify-center gap-5 py-28">
+            <span class="text-2xl text-center text-white font-semibold syne flex flex-col items-center">
+                Unlock Token
+                <span class="text-[#9ca3af] text-sm inter font-normal px-6 text-center">
+                    Unlock Your Token with Master Password
+                </span>
+            </span>
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1 mt-6">
+                <span class="text-[#9ca3af] text-sm">Master Password</span>
+                <input
+                    class="w-full bg-transparent border border-[#9ca3af] duration-200 focus:outline-0 focus:border-[#a78bfa] py-3 text-white px-6 rounded"
+                    type="password" id="master-password">
+            </div>
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1">
+                <button onclick="unlock()"
+                    class="bg-[#a78bfa22] focus:bg-[#a78bfa55] duration-300 border font-medium border-[#a78bfa] syne py-4 text-white rounded text-sm focus:outline-0">Unlock
+                    Token</button>
+            </div>
+            <span onclick="logout()" class="syne cursor-pointer text-white text-sm">Logout</span>
         </div>
     </div>
-    <div class="hidden justify-center flex-col items-center min-h-screen gap-6 py-16" id="inner">
-        <span class="text-[#F5E9E2] syne text-2xl lg:text-3xl text-center font-bold">Get Passwords</span>
-        <div class="flex w-5/6 md:w-4/6 lg:w-3/6 flex-col gap-2 mt-8">
-            <span class="mont text-[#F5E9E2] font-medium">Platform Name/URL</span>
-            <input id="platform" oninput="set_to_lower(event)" class="bg-[#282F3E] py-3 text-[#F5E9E2] focus:outline-0 px-6 rounded mont" type="text">
+    <!-- Home Page -->
+    <div class="min-h-screen w-screen duration-500 hidden" id="home">
+        <div class="min-h-screen flex flex-col items-center justify-center gap-5 py-28">
+            <span class="text-2xl text-center text-white font-semibold syne flex flex-col items-center">
+                Get Passwords
+                <span class="text-[#9ca3af] text-sm inter font-normal px-6 text-center">
+                    Enter platform name correctly
+                </span>
+            </span>
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1 mt-6">
+                <span class="text-[#9ca3af] text-sm">Platform Name</span>
+                <input oninput="set_to_lower(event)"
+                    class="w-full bg-transparent border border-[#9ca3af] duration-200 focus:outline-0 focus:border-[#a78bfa] py-3 text-white px-6 rounded"
+                    type="text" id="platform">
+            </div>
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1">
+                <span class="text-[#9ca3af] text-sm">Your Password - Click to copy</span>
+                <input onclick="copy()"
+                    class="w-full bg-transparent border border-[#9ca3af] duration-200 focus:outline-0 focus:border-[#a78bfa] py-3 text-white px-6 rounded"
+                    type="text" id="result-password" readonly>
+            </div>
+            <div class="inter flex flex-col w-5/6 md:w-3/5 xl:w-2/5 gap-1">
+                <button onclick="get_password()"
+                    class="bg-[#a78bfa22] focus:bg-[#a78bfa55] duration-300 border font-medium border-[#a78bfa] syne py-4 text-white rounded text-sm focus:outline-0">Get
+                    Password</button>
+            </div>
         </div>
-        <div class="flex w-5/6 md:w-4/6 lg:w-3/6 flex-col gap-2">
-            <input readonly onclick="copy(this.value)" class="bg-[#282F3E] py-3 text-[#F5E9E2] focus:outline-0 px-6 rounded mont" type="text" placeholder="Password Will Appear Here" id="password_holder">
-        </div>
-        <div class="w-5/6 md:w-4/6 lg:w-3/6">
-            <button onclick="get_password()" class="py-3 focus:outline-0 w-full flex justify-center gap-4 items-center rounded bg-[#E3B5A4] text-[#0B0014] mont font-medium duration-300">Get Password</button>
-        </div>
+    </div>
+    <!-- Toast -->
+    <div class="fixed -bottom-24 right-0 bg-slate-700 text-white overflow-x-hidden rounded w-72 mb-6 mr-6 px-4 py-4 duration-300"
+        id="toast">
+        <span class="inter text-sm" id="toast-span">First name can't be empty</span>
     </div>
 </body>
 </html>
