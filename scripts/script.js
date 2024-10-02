@@ -94,6 +94,7 @@ function unlock() {
                 }
                 else {
                     slideto('generation', 'unlock')
+                    document.getElementById('progress').style.width = `0%`;
                     show_toast('Incorrect Password')
                 }
             }
@@ -139,6 +140,7 @@ async function encrypt_token() {
                     localStorage.setItem("token", token)
                     localStorage.setItem("password", password.substring(0, 4))
                     slideto('generation', 'unlock')
+                    document.getElementById('progress').style.width = `0%`;
                 }
             }
             setTimeout(() => { processToken(0) }, 100)
@@ -172,6 +174,7 @@ async function create_token() {
             } else {
                 token = Sha512.hash(data);
                 slideto('generation', 'protect')
+                document.getElementById('progress').style.width = `0%`;
             }
         }
         setTimeout(() => { processToken(0) }, 100)
