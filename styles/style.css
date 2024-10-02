@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter.ttf');
+}
+@font-face {
+  font-family: 'Syne';
+  src: url('/fonts/syne.ttf');
+}
+
+.inter{
+  font-family: 'Inter';
+}
+
+.syne{
+  font-family: 'Syne';
+}
+
+.hide-scroll::-webkit-scrollbar{
+  display: none;
+}
