@@ -34,7 +34,6 @@ function create_password(hash) {
 function get_password() {
     const platform = document.getElementById('platform').value
     if (platform) {
-        document.getElementById('platform').value = ''
         document.getElementById('result-password').value = create_password(Sha512.hash(token + platform))
     }
     else { 
