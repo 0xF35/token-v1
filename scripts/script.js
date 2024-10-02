@@ -166,7 +166,7 @@ async function create_token() {
         slideto('create', 'generation')
         let processToken = async (i) => {
             document.getElementById('progress').style.width = `${i / 5}%`;
-            if (i < 5) {
+            if (i < 500) {
                 data = await shake256(data, 10000000);
                 setTimeout(() => processToken(i + 1), 0);
             } else {
