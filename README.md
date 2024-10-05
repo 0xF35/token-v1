@@ -1,5 +1,5 @@
 # 🔒[Token v1](https://token-v1.vercel.app/) - The Only Password Manager You’ll Ever Need
-
+![](https://img.shields.io/github/repo-size/0xf35/token-v1?color=brightgreen)
 > Why trust your passwords to someone else when you can take control yourself?
 
 **Token v1** isn’t your typical password manager. No subscription fees, no sketchy cloud storage, no “we swear we’re secure” promises. You hold the keys – literally. This tool generates cryptographically strong passwords on the client side, securely hashed using SHA512 and SHAKE256, stored only in your local storage. Why? Because no one, not even us, should have access to your secrets.
